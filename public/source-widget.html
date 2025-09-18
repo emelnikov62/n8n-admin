@@ -1,0 +1,163 @@
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://n8n-agent-emelnikov62.amvera.io/webhook/widget.css" />
+</head>
+
+<body>
+    <div id="n8n-chat" data-v-app="">
+        <div class="chat-window-wrapper n8n-chat">
+            <div class="chat-window" style="display: none;">
+                <main class="chat-layout chat-wrapper">
+                    <div class="chat-header">
+                        <div class="chat-heading">
+                            <h1>Всем привет! 👋</h1><!---->
+                        </div>
+                        <p>Задайте свой вопрос. Мы на связи 24/7.</p>
+                    </div>
+                    <div class="chat-body">
+                        <div class="chat-messages-list">
+                            <div class="chat-message chat-message-from-bot"><!---->
+                                <div class="chat-message-markdown">
+                                    <p>Здравствуйте! 👋</p>
+                                </div><!---->
+                            </div>
+                            <div class="chat-message chat-message-from-bot"><!---->
+                                <div class="chat-message-markdown">
+                                    <p>Меня зовут Иван. Чем я могу Вам помочь?</p>
+                                </div><!---->
+                            </div><!---->
+                        </div>
+                    </div>
+                    <div class="chat-footer">
+                        <div data-v-de5e7961="" class="chat-input" style="--controls-count: 1;">
+                            <div data-v-de5e7961="" class="chat-inputs"><!---->
+                                <textarea data-v-de5e7961="" data-test-id="chat-input" class="chat-input-text"
+                                    placeholder="Задайте свой вопрос" style="height: 0px;"></textarea>
+                                <div data-v-de5e7961="" class="chat-inputs-controls"><!---->
+                                    <button data-v-de5e7961="" class="chat-input-send-button"><svg data-v-de5e7961=""
+                                            viewBox="0 0 24 24" width="24" height="24">
+                                            <path fill="currentColor" d="m2 21l21-9L2 3v7l15 2l-15 2z"></path>
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div><!---->
+                        </div>
+                    </div>
+                </main>
+            </div>
+            <div class="chat-window-toggle">
+                <svg viewBox="0 0 24 24" width="32" height="32" class="chat-window-toggle-btn-show">
+                    <path fill="currentColor"
+                        d="M12 3c5.5 0 10 3.58 10 8s-4.5 8-10 8c-1.24 0-2.43-.18-3.53-.5C5.55 21 2 21 2 21c2.33-2.33 2.7-3.9 2.75-4.5C3.05 15.07 2 13.13 2 11c0-4.42 4.5-8 10-8">
+                    </path>
+                </svg>
+                <svg viewBox="0 0 24 24" width="32" height="32" class="chat-window-toggle-btn-hide hide">
+                    <path fill="currentColor" d="M7.41 8.58L12 13.17l4.59-4.59L18 10l-6 6l-6-6z"></path>
+                </svg>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
+
+<script>
+    var sessionId = Math.floor(Math.random(10000000000) * 10000000000);
+
+    setTimeout(() => {
+        $(document).ready(() => {
+            $('.chat-window-toggle').click(() => {
+                showChat();
+            });
+
+            $('.chat-input-send-button').click(() => {
+                sendMessage();
+            });
+
+            $('.chat-input-text').keypress(function (e) {
+                if (e.which == 13) {
+                    $('.chat-input-send-button').click();
+                    return false;
+                }
+            });
+        });
+    }, 100);
+
+    function showChat() {
+        if ($('.chat-window').is(':hidden')) {
+            $('.chat-window').show();
+            $('.chat-window-toggle-btn-hide').removeClass('hide');
+            $('.chat-window-toggle-btn-show').addClass('hide');
+        } else {
+            $('.chat-window').hide();
+            $('.chat-window-toggle-btn-hide').addClass('hide');
+            $('.chat-window-toggle-btn-show').removeClass('hide');
+        }
+    }
+
+    function sendMessage() {
+        changeButtonStatus(true);
+
+        var text = $('.chat-input-text').val();
+        addUserMessage(text);
+        var wait = addWait();
+        scrollMessageList();
+
+        $.post({ url: 'https://n8n-agent-emelnikov62.amvera.io/webhook/receivedMessage', crossDomain: true, timeout: 30000, data: { message: text, sessionid: sessionId, id: 2 } })
+            .done(function (data) {
+            removeWait();
+            addBotMessage(data);
+            scrollMessageList();
+            changeButtonStatus(false);
+        })
+        .fail(function (jqXHR, textStatus, errorThrown) {
+            console.log(jqXHR);
+            console.error(errorThrown);
+            removeWait();
+        });
+    }
+
+    function addBotMessage(text) {
+        var message = $(`<div class="chat-message chat-message-from-bot"><div class="chat-message-markdown"><p>${text}</p></div></div>`)
+        $('.chat-messages-list').append(message);
+    }
+
+    function addUserMessage(text) {
+        var message = $(`<div class="chat-message chat-message-from-user"><div class="chat-message-markdown"><p>${text}</p></div></div>`)
+        $('.chat-messages-list').append(message);
+
+        $('.chat-input-text').val('');
+    }
+
+    function addWait() {
+        var wait = $(`<div class="chat-message chat-message-from-bot chat-message-typing chat-message-typing-animation-bouncing" data-test-id="chat-message-typing"><!----><div class="chat-message-typing-body"><span class="chat-message-typing-circle"></span><span class="chat-message-typing-circle"></span><span class="chat-message-typing-circle"></span></div></div>`);
+        $('.chat-messages-list').append(wait);
+
+        return wait;
+    }
+
+    function removeWait() {
+        $('.chat-message-typing').remove();
+    }
+
+    function changeButtonStatus(status) {
+        $('.chat-input-send-button').prop('disabled', status);
+    }
+
+    function scrollMessageList() {
+        $('.chat-messages-list').animate({ scrollTop: $('.chat-messages-list')[0].scrollHeight }, 1000);
+    }
+</script>
+
+<style>
+    .hide {
+        display: none;
+    }
+
+    .chat-messages-list {
+        overflow-y: auto;
+    }
+</style>

@@ -1,26 +1,39 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div class="content flex flex-column align-items-center justify-start profile-content">
+    <div class="content-inner flex flex-column gap-20">
+      <div class="flex flex-column gap-10 align-items-center justify-center">
+        <img alt="Vue logo" src="./assets/logo.png">
+        <div class="main fs-30">Welcome to Dialogica</div>
+        <button @click="goTo"
+          class="button-go-to back-static cursor padding-10 gradient-fresh-block flex full-width flex-row align-items-center justify-space-between gap-10 back block height-45 font-bold fs-14">
+          <span class="main fs-16">Get started</span>
+          <SvgComponent :svgKey="SVG.MENU_MOBILE"></SvgComponent>
+        </button>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
+import SvgComponent from './components/svg/Svg.vue';
+import { SVG } from './components/svg/Enum';
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    SvgComponent
+  },
+  data() {
+    return {
+      SVG
+    }
+  },
+  mounted() {
+  },
+  methods: {
+    goTo() {
+      $('.button-go-to').hide();
+      this.$router.push({ name: 'admin-general' });
+    }
   }
 }
 </script>
-
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>

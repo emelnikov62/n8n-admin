@@ -1,0 +1,1572 @@
+@charset "UTF-8";
+
+.profile-info {
+    width: 100%;
+    height: -webkit-fill-available;
+    position: fixed;
+    z-index: 10;
+    opacity: 0;
+    transition: opacity 0.3s;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    top: 73px;
+    overflow: hidden;
+}
+
+.profile-info.active {
+    opacity: 1 !important;
+}
+
+.profile-info .profile-container {
+    display: flex;
+    flex-direction: column;
+    width: -webkit-fill-available;
+    height: 99%;
+    border-radius: 5px;
+    position: relative;
+    padding: 0px 5px;
+}
+
+.profile-info .profile-container .title {
+    width: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 10px;
+}
+
+.profile-info .close-button {
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    box-shadow: none;
+}
+
+.profile-info .close-button svg {
+    width: 100%;
+    height: 100%;
+}
+
+.profile-info .profile-content {
+    width: auto;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+}
+
+.profile-info .list-items {
+    padding-top: 0;
+    position: relative;
+}
+
+.profile-info .title-menu {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: start;
+}
+
+.profile-info .add-to-cart {
+    background: darkred !important;
+}
+
+.profile-content-left {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+    width: 300px;
+    box-shadow: 1px 1px 1px #181a1e, 8px 3px 5px rgba(0, 0, 0, 0.25), inset 3px 3px 10px rgba(0, 0, 0, 0.1), inset -1px -1px 15px #181a1e;
+}
+
+.profile-content-right {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    height: 100%;
+    overflow: hidden;
+}
+
+.profile-content-left .avatar {
+    width: 100%;
+    height: 160px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+}
+
+.profile-content-left .avatar img {
+    width: 150px;
+    height: 150px;
+    border-radius: 10px;
+}
+
+.profile-content-left .username {
+    font-size: 14px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: grey;
+}
+
+.profile-content-left .steamid {
+    font-size: 12px;
+    color: grey;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.profile-content-left .balance {
+    font-size: 20px;
+    font-weight: bold;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.profile-content-left .button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    color: white;
+    height: 50px;
+    width: 90%;
+    gap: 10px;
+    font-weight: bold;
+}
+
+.profile-left-menu {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    flex-direction: column;
+    width: 100%;
+    padding-top: 30px;
+}
+
+.profile-left-menu-item {
+    font-size: 12px;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    width: 90%;
+    color: white;
+    gap: 10px;
+    height: 25px;
+    cursor: pointer;
+    padding: 10px;
+    opacity: 0.6;
+    transition: 0.3s;
+}
+
+.profile-left-menu-item.active {
+    opacity: 1;
+}
+
+.profile-left-menu-item:hover {
+    opacity: 1 !important;
+    box-shadow: 1px 1px 1px #181a1e, 8px 3px 5px rgba(0, 0, 0, 0.25), inset 3px 3px 10px rgba(0, 0, 0, 0.1), inset -1px -1px 15px #181a1e;
+}
+
+.profile-left-menu-item svg {
+    width: 20px;
+    height: 20px;
+}
+
+.settings-container {
+    width: 100%;
+}
+
+.sellownprice-container,
+.trades-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.sell-own-items,
+.trades-items {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    overflow-y: scroll;
+    scrollbar-width: none;
+    gap: 5px;
+}
+
+.sell-own-item,
+.trades-item {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background: #16171b;
+    width: -webkit-fill-available;
+    gap: 10px;
+    padding: 10px 10px;
+    cursor: pointer;
+    box-shadow: 1px 1px 1px #181a1e, 8px 3px 5px rgba(0, 0, 0, 0.25), inset 3px 3px 10px rgba(0, 0, 0, 0.1), inset -1px -1px 15px #181a1e;
+}
+
+.sell-own-item:hover,
+.trades-item:hover {
+    background: linear-gradient(180deg, #181a1e, #1D626F) !important;
+    box-shadow: -3px -3px 5px #181a1e, 8px 3px 5px rgba(0, 0, 0, 0.25), inset 3px 3px 10px rgba(0, 0, 0, 0.1), inset -1px -1px 15px #181a1e;
+}
+
+.sell-own-item img,
+.trades-item img {
+    width: 70px;
+    height: 70px;
+}
+
+.sell-own-item .name,
+.trades-item .name {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: center;
+    gap: 5px;
+    position: relative;
+}
+
+.sell-own-item .name a,
+.trades-item .name a {
+    text-decoration: none;
+}
+
+.sell-own-item .name a span:hover,
+.trades-item .name a span:hover {
+    color: grey !important;
+}
+
+.sell-own-item .name .main,
+.trades-item .name .main {
+    color: white;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.sell-own-item .name .second,
+.trades-item .name .second {
+    color: grey;
+    font-size: 12px;
+}
+
+.sell-own-item .prices,
+.trades-item .prices {
+    flex: 1;
+    display: flex;
+    justify-content: end;
+    align-items: end;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.sell-own-item .prices .prices-container,
+.trades-item .prices .prices-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    gap: 40px;
+}
+
+.trades-item .prices {
+    flex-direction: row;
+}
+
+.sell-own-item .prices .prices-container .price-steam,
+.sell-own-item .prices .prices-container .price-market,
+.trades-item .prices .prices-container .price-steam,
+.trades-item .prices .prices-container .price-market {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    justify-content: end;
+    align-items: end;
+    position: relative;
+}
+
+.sell-own-item .prices .prices-container .main,
+.trades-item .prices .prices-container .main {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.sell-own-item .prices .prices-container .price-steam .main,
+.trades-item .prices .prices-container .price-steam .main {
+    color: red;
+}
+
+.sell-own-item .prices .prices-container .price-market .main,
+.trades-item .prices .prices-container .price-market .main {
+    color: green;
+}
+
+.sell-own-item .prices .prices-container .second,
+.trades-item .prices .prices-container .second {
+    font-size: 12px;
+    color: grey;
+}
+
+.sell-own-item.disabled,
+.trades-item.disabled {
+    opacity: 0.2;
+}
+
+.sell-own-item .item-disabled-svg,
+.trades-item .item-disabled-svg {
+    position: initial;
+    top: auto;
+    left: auto;
+}
+
+.trades-filters-search-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: -webkit-fill-available;
+    gap: 10px;
+}
+
+.trades-container .action {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.action .add-to-trade,
+.action .remove-trade,
+.action .edit-trade,
+.action button {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-weight: bold;
+    padding: 10px;
+    gap: 10px;
+}
+
+.action .add-to-trade svg,
+.action .remove-trade svg,
+.action .edit-trade svg,
+.action button svg {
+    width: 20px;
+    height: 20px;
+}
+
+.confirm-edit-trade .trade-link-svg-success {
+    position: unset;
+    fill: white;
+}
+
+.confirm-edit-trade .trade-link-svg-success g {
+    fill: white;
+}
+
+.hide {
+    display: none !important;
+}
+
+.profile-content-left-mobile {
+    display: none;
+    flex-direction: row;
+    gap: 10px;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 15px 10px 15px;
+}
+
+.profile-content-left-mobile svg {
+    width: 30px;
+    height: 30px;
+    opacity: 0.6;
+    transition: 0.3s;
+}
+
+.profile-content-left-mobile svg.active {
+    opacity: 1;
+}
+
+.support-container,
+.ticket-container,
+.ticket-chat-container,
+.payment-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: start;
+    width: -webkit-fill-available;
+    padding: 10px;
+}
+
+.support-container {
+    padding: 0;
+}
+
+.ticket-chat-container {
+    flex: 1;
+    position: relative;
+    justify-content: space-between;
+}
+
+.support-header,
+.ticket-header,
+.ticket-chat-header {
+    padding: 10px 0px 10px 20px;
+    display: flex;
+    flex-direction: row;
+    align-items: start;
+    justify-content: start;
+    width: -webkit-fill-available;
+    border-bottom: 1px solid rgba(255, 255, 255, .04);
+}
+
+.support-header button,
+.ticket-confirm button {
+    height: 40px;
+    font-weight: bold;
+    color: white;
+    min-width: 200px;
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+    align-items: center;
+    justify-content: center;
+}
+
+.ticket-confirm {
+    display: flex;
+    flex-direction: row;
+    align-items: start;
+    justify-content: start;
+    width: -webkit-fill-available;
+    padding: 0px 0px 0px 20px;
+}
+
+.support-tickets,
+.ticket-data {
+    display: flex;
+    flex-direction: column;
+    width: -webkit-fill-available;
+    align-items: start;
+    justify-content: start;
+    gap: 40px;
+    padding: 20px;
+}
+
+.support-tickets {
+    overflow: hidden;
+    overflow-y: scroll;
+    scrollbar-width: none;
+}
+
+.ticket-data {
+    padding: 20px;
+}
+
+.support-tickets h2 {
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.empty-tickets {
+    color: grey;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.ticket-header span {
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.ticket-type,
+.ticket-message {
+    font-size: 14px;
+    color: grey;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: -webkit-fill-available;
+}
+
+.ticket-type select {
+    height: 40px;
+    width: 300px;
+    background: transparent;
+    color: grey;
+    padding: 10px;
+    font-size: 16px;
+    outline: none;
+    border: 2px solid rgba(255, 255, 255, .04);
+}
+
+.ticket-message textarea {
+    width: 80%;
+    background: transparent;
+    color: grey;
+    padding: 10px;
+    font-size: 16px;
+    resize: none;
+    outline: none;
+    border: 2px solid rgba(255, 255, 255, .04);
+}
+
+.cls-1,
+.cls-2 {
+    fill: none;
+    stroke: white;
+    stroke-miterlimit: 10;
+    stroke-width: 1.91px;
+}
+
+.cls-1 {
+    stroke-linecap: square;
+}
+
+.st0 {
+    fill: transparent;
+}
+
+.st1 {
+    fill: #37A72E;
+}
+
+.st2 {
+    fill: url(#Combined-Shape_4_);
+}
+
+.tickets {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: start;
+    justify-content: start;
+    width: -webkit-fill-available;
+}
+
+.ticket-info {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    align-items: start;
+    justify-content: start;
+    width: -webkit-fill-available;
+    padding: 10px;
+    border-bottom: 1px solid rgba(255, 255, 255, .04);
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+.ticket-info:hover {
+    border: 1px solid rgba(255, 255, 255, .04);
+    box-shadow: -3px -3px 5px #181a1e, 8px 3px 5px rgba(0, 0, 0, 0.25), inset 3px 3px 10px rgba(0, 0, 0, 0.1), inset -1px -1px 15px #181a1e;
+}
+
+.support-tickets .active,
+.support-tickets .completed {
+    display: flex;
+    flex-direction: column;
+    width: -webkit-fill-available;
+}
+
+.support-tickets .active .title,
+.support-tickets .completed .title {
+    padding: 0;
+}
+
+.ticket-info-header {
+    color: grey;
+    font-size: 14px;
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    justify-content: space-between;
+    width: -webkit-fill-available;
+}
+
+.ticket-new-answer {
+    color: orange;
+}
+
+.ticket-info-message {
+    color: white;
+    font-size: 16px;
+}
+
+.ticket-info-dates {
+    color: grey;
+    font-size: 12px;
+}
+
+.ticket-chat-back {
+    border-right: 1px solid rgba(255, 255, 255, .04);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-right: 20px;
+    height: 100%;
+}
+
+.ticket-chat-back a {
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    transition: 0.3s;
+    color: grey;
+    opacity: 0.8;
+}
+
+.ticket-chat-back a span {
+    text-wrap: nowrap;
+    font-size: 14px;
+}
+
+.ticket-chat-back a svg {
+    width: 20px;
+    height: auto;
+}
+
+.ticket-chat-back a svg {
+    fill: grey;
+    transition: 0.3s;
+}
+
+.ticket-chat-back a:hover {
+    color: white;
+    opacity: 1;
+
+    svg {
+        fill: white;
+    }
+}
+
+.ticket-chat-info {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding-left: 20px;
+}
+
+.ticket-chat-info-info {
+    color: grey;
+    font-size: 12px;
+}
+
+.ticket-chat-info-type {
+    color: white;
+    font-size: 14px;
+}
+
+.white {
+    color: white;
+}
+
+.ticket-chat-input {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: -webkit-fill-available;
+    padding: 20px;
+    position: relative;
+    bottom: 0;
+}
+
+.ticket-chat-input textarea {
+    width: -webkit-fill-available;
+    background: transparent;
+    color: grey;
+    padding: 0px 10px 10px 10px;
+    font-size: 16px;
+    resize: none;
+    border: 0px;
+    outline: none;
+
+}
+
+.ticket-chat-input-data {
+    padding-top: 10px;
+    border-radius: 5px;
+    border: 2px solid rgba(255, 255, 255, .04);
+    width: -webkit-fill-available;
+    height: 140px;
+}
+
+.ticket-chat-input a {
+    position: absolute;
+    text-decoration: none;
+    color: grey;
+    transition: 0.3s;
+    left: 35px;
+    bottom: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    opacity: 0.8;
+}
+
+.ticket-chat-input a svg {
+    width: 25px;
+    height: auto;
+}
+
+.ticket-chat-input a:hover {
+    color: white;
+    opacity: 1;
+
+    svg g path {
+        stroke: white;
+    }
+}
+
+.orange {
+    color: orange;
+}
+
+.ticket-chat-messages {
+    display: flex;
+    padding: 20px;
+    width: -webkit-fill-available;
+    flex: 1;
+    overflow: hidden;
+    overflow-y: scroll;
+    scrollbar-width: none;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.ticket-chat-message {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    width: -webkit-fill-available;
+}
+
+.ticket-chat-message-data {
+    width: fit-content;
+    max-width: 80%;
+    gap: 10px;
+    display: flex;
+    flex-direction: row;
+    position: relative;
+}
+
+.support .ticket-chat-message-data {
+    flex-direction: row-reverse;
+}
+
+.ticket-chat-message-left {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.ticket-chat-message-left span {
+    color: grey;
+    font-size: 12px;
+}
+
+.ticket-message-message {
+    padding: 10px;
+    border-radius: 10px;
+    color: white;
+    font-size: 14px;
+    min-height: 40px;
+    flex: 1;
+}
+
+.message-own .ticket-message-message {
+    background: #16526d;
+}
+
+.support .ticket-message-message {
+    background: #181a1e;
+}
+
+.message-own .ticket-message-message::before {
+    content: "";
+    position: absolute;
+    z-index: 0;
+    bottom: 0;
+    right: 40px;
+    height: 20px;
+    width: 20px;
+    background-color: #16526d;
+    border-bottom-left-radius: 15px;
+}
+
+.support .ticket-message-message:before {
+    content: "";
+    position: absolute;
+    z-index: 0;
+    bottom: 0;
+    right: -8px;
+    height: 20px;
+    width: 20px;
+    background-color: #16526d;
+    left: 40px;
+    background: #181a1e;
+    border-bottom-right-radius: 15px;
+}
+
+.message-own .ticket-message-message:after {
+    content: "";
+    position: absolute;
+    z-index: 1;
+    bottom: 0;
+    right: 40px;
+    width: 10px;
+    height: 20px;
+    background: #132535;
+    border-bottom-left-radius: 10px;
+}
+
+.support .ticket-message-message:after {
+    content: "";
+    position: absolute;
+    z-index: 1;
+    bottom: 0;
+    right: -8px;
+    width: 10px;
+    height: 20px;
+    background: linear-gradient(300deg, #181a1e, #132535);
+    left: 40px;
+    border-bottom-right-radius: 10px;
+}
+
+.message-own {
+    align-items: end;
+}
+
+.ticket-chat-message-right {
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+    align-items: end;
+}
+
+.ticket-chat-message-right img {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+}
+
+.ticket-message-avatar {
+    display: flex;
+    align-items: center;
+}
+
+.ticket-chat-message-right svg {
+    width: 40px;
+    height: 40px;
+}
+
+.payment-header {
+    padding: 0px 0px 20px 20px;
+    display: flex;
+    flex-direction: row;
+    align-items: start;
+    justify-content: start;
+    width: -webkit-fill-available;
+}
+
+.payment-types {
+    display: flex;
+    flex-direction: row;
+    gap: 0;
+    align-items: center;
+    justify-content: center;
+    color: grey;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.payment-type {
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid rgba(255, 255, 255, .04);
+    padding: 15px;
+    transition: 0.3s;
+    height: 15px;
+    min-width: 100px;
+}
+
+.payment-type-deposit.active {
+    background: rgba(255, 255, 255, .04);
+    color: white;
+
+    svg g g path {
+        stroke: white;
+    }
+}
+
+.payment-type-history.active {
+    background: rgba(255, 255, 255, .04);
+    color: white;
+
+    svg {
+        fill: white;
+    }
+}
+
+.payment-type-withdraw.active {
+    background: rgba(255, 255, 255, .04);
+    color: white;
+
+    svg g path {
+        stroke: white;
+    }
+}
+
+.payment-type-deposit {
+    border-radius: 5px 0px 0px 5px;
+}
+
+.payment-type-withdraw {
+    border-top: 2px solid rgba(255, 255, 255, .04);
+    border-bottom: 2px solid rgba(255, 255, 255, .04);
+    border-right: 0;
+    border-left: 0;
+}
+
+.payment-type-history {
+    border-radius: 0px 5px 5px 0px;
+}
+
+.payment-type:hover {
+    background: rgba(255, 255, 255, .04);
+    color: white;
+}
+
+.payment-type-history:hover {
+    svg {
+        fill: white;
+    }
+}
+
+.payment-type-withdraw:hover {
+    svg g path {
+        stroke: white;
+    }
+}
+
+.payment-type-deposit:hover {
+    svg g g path {
+        stroke: white;
+    }
+}
+
+.payment-type-deposit svg {
+    width: 25px;
+    height: 25px;
+    fill: transparent;
+    transition: 0.3s;
+}
+
+.payment-type-deposit svg g g path {
+    stroke: grey;
+    transition: 0.3s;
+}
+
+.payment-type-withdraw svg g path {
+    transition: 0.3s;
+}
+
+.payment-type-withdraw svg {
+    width: 25px;
+    height: 25px;
+    transition: 0.3s;
+}
+
+.payment-type-history svg {
+    width: 20px;
+    height: 20px;
+    fill: grey;
+    transition: 0.3s;
+}
+
+.payment-data {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: center;
+    padding: 20px;
+    color: white;
+    width: -webkit-fill-available;
+}
+
+.deposit-data,
+.withdraw-data {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+}
+
+.data-item {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(180deg, #181a1e, #132535) !important;
+    box-shadow: -3px -3px 5px #181a1e, 8px 3px 5px rgba(0, 0, 0, 0.25), inset 3px 3px 10px rgba(0, 0, 0, 0.1), inset -1px -1px 15px #181a1e;
+    width: 200px;
+    height: 100px;
+    border-radius: 5px;
+    cursor: pointer;
+    opacity: 0.7;
+    transition: 0.3s;
+}
+
+.data-item:hover {
+    opacity: 1;
+    height: 110px;
+    width: 210px;
+}
+
+.data-item svg {
+    height: 40%;
+    width: auto;
+}
+
+.data-item.cards svg {
+    height: 60%;
+    width: auto;
+}
+
+.sell-own-filters,
+.trades-filters {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: start;
+    padding: 10px;
+    gap: 10px;
+    width: -webkit-fill-available;
+}
+
+.sell-own-filters-btns,
+.trades-filters-btns {
+    display: flex;
+    width: -webkit-fill-available;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: row;
+    gap: 10px;
+}
+
+.sell-own-filters button,
+.trades-filters button {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    color: white;
+    font-weight: bold;
+    padding: 10px;
+    min-height: 40px;
+}
+
+.sell-own-filters button:disabled,
+.trades-filters button:disabled {
+    opacity: 0.4;
+}
+
+.sell-own-filters button svg,
+.trades-filters button svg {
+    width: 20px;
+    height: 20px;
+}
+
+.sell-own-filters-btns-left,
+.sell-own-filters-btns-right,
+.trades-filters-btns-left,
+.trades-filters-btns-right {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    gap: 10px;
+    flex-direction: row;
+}
+
+.sell-own-filters-btns-right,
+.trades-filters-btns-right {
+    color: grey;
+    font-size: 14px;
+    gap: 15px;
+}
+
+.button-set-prices {
+    opacity: 1;
+}
+
+.sellownprice-header,
+.trades-header {
+    padding: 10px 10px 20px 20px;
+    display: flex;
+    flex-direction: row;
+    align-items: start;
+    justify-content: start;
+    width: -webkit-fill-available;
+    border-bottom: 1px solid rgba(255, 255, 255, .04);
+}
+
+.sellownprice-header span,
+.trades-header span {
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.sell-own-filters-search,
+.trades-filters-search {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    width: -webkit-fill-available;
+}
+
+.sell-own-filters-search svg,
+.trades-filters-search svg {
+    position: absolute;
+    right: 10px;
+    cursor: pointer;
+    width: 20px;
+    height: 20px;
+}
+
+.sell-own-filters-search input,
+.trades-filters-search input,
+.trades-container .prices-container input {
+    height: 35px;
+    width: 100%;
+    border: 2px solid rgba(255, 255, 255, .07);
+    background: transparent;
+    color: white;
+    text-align: left;
+    font-size: 16px;
+    padding-left: 10px;
+    padding-right: 90px;
+}
+
+.trades-container .prices-container input {
+    max-width: 70px;
+    padding-right: 10px;
+    text-align: right;
+    outline: none;
+    border: 0;
+    height: auto;
+    color: green;
+    opacity: 1;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.name-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    align-items: center;
+    gap: 10px;
+}
+
+.trades-item .name .copy-btn svg,
+.sell-own-item .name .copy-btn svg {
+    top: 0px;
+    position: unset;
+}
+
+.trades-container .prices-container input.edit {
+    border: 2px solid rgba(255, 255, 255, .07);
+    color: white;
+    height: 35px;
+    text-align: left;
+    padding: 0px 10px 0px 20px;
+}
+
+.sell-own-filters-search input:hover,
+.trades-filters-search input:hover {
+    box-shadow: -1px -1px 1px #3d3d3d, 8px 3px 5px rgba(0, 0, 0, 0.25), inset 3px 3px 10px rgba(0, 0, 0, 0.1), inset -1px -1px 15px #474747;
+}
+
+.sell-own-filters-search input:focus,
+.trades-filters-search input:focus {
+    outline: none;
+}
+
+.set-prices-container {
+    width: -webkit-fill-available;
+    height: -webkit-fill-available;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: column;
+    overflow: hidden;
+    flex: 1;
+}
+
+.button-confirm {
+    opacity: 1;
+}
+
+.set-prices-container button {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    color: white;
+    font-weight: bold;
+    padding: 10px;
+}
+
+.set-prices-content {
+    flex: 1;
+    width: -webkit-fill-available;
+    padding: 10px;
+    overflow: hidden;
+    overflow-y: scroll;
+    scrollbar-width: none;
+}
+
+.set-prices-bottom {
+    height: auto;
+    border-radius: 5px;
+    width: -webkit-fill-available;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    gap: 10px;
+    border-top: 2px solid rgba(255, 255, 255, .04);
+}
+
+.set-prices-bottom-info {
+    flex: 1;
+}
+
+.set-prices-bottom-info {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    flex-direction: row;
+    gap: 30px;
+    padding-left: 10px;
+}
+
+.sell-own-item .image,
+.trades-item .image {
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.set-prices-bottom-info-item {
+    display: flex;
+    align-items: start;
+    justify-content: start;
+    flex-direction: column;
+    gap: 0px;
+    min-width: 60px;
+}
+
+.set-prices-bottom-info-item .title {
+    color: grey;
+    font-size: 14px;
+}
+
+.set-prices-bottom-info-item .text {
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+
+.price-steam .hint {
+    color: grey;
+    font-size: 12px;
+    text-align: center;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.price-steam .hint:hover {
+    color: white;
+}
+
+.set-prices-content input {
+    min-width: 40px;
+    width: 110px;
+    padding: 0px 30px 0px 20px;
+    text-align: left;
+}
+
+.set-prices-content .prices-currency,
+.trades-container .prices-currency {
+    position: absolute;
+    color: grey;
+    font-weight: bold;
+    left: 10px;
+}
+
+.trades-container .price-steam {
+    position: relative;
+}
+
+.trades-container .prices-currency {
+    font-size: 16px;
+    right: 0;
+    left: auto;
+    color: green;
+    bottom: 20px;
+}
+
+.trades-container .prices-currency.edit {
+    left: 10px;
+    color: grey;
+    top: 28.5px;
+    width: 5px;
+}
+
+.clear-search-price {
+    position: absolute;
+    right: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.clear-search-price svg,
+.clear-search-pricesvg g path {
+    fill: grey;
+    cursor: pointer;
+    z-index: 50;
+    opacity: 0.6;
+    right: 0px;
+}
+
+.clear-search-price svg:hover {
+    fill: white;
+    opacity: 1;
+}
+
+.trades-container .trades-item .prices .prices-container .price-steam .main {
+    color: green;
+}
+
+.prices-market-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: row;
+    width: -webkit-fill-available;
+}
+
+.set-prices-content .prices-market-container .prices-convert {
+    width: auto;
+}
+
+.trades-item .name-container-data,
+.sell-own-item .name-container-data {
+    display: flex;
+    align-items: start;
+    justify-content: start;
+    flex-direction: column;
+    gap: 10px;
+    width: auto;
+}
+
+@media only screen and (width < 1025px) {}
+
+@media only screen and (width < 821px) {
+
+    .sell-own-filters-btns,
+    .trades-filters-btns {
+        flex-direction: column;
+    }
+
+    .sell-own-filters button,
+    .trades-filters button {
+        flex: 1;
+    }
+
+    .sell-own-filters-btns-left,
+    .sell-own-filters-btns-right,
+    .trades-filters-btns-left,
+    .trades-filters-btns-right {
+        width: -webkit-fill-available;
+    }
+}
+
+@media only screen and (width=540px) {
+
+    .sell-own-item .prices .prices-container,
+    .trades-item .prices .prices-container {
+        justify-content: end;
+    }
+
+    .set-prices-container .sell-own-item .prices .prices-container {
+        justify-content: center;
+    }
+}
+
+@media only screen and (width < 541px) {
+    .set-prices-bottom {
+        flex-direction: column;
+    }
+
+    .trades-item .prices .prices-container {
+        justify-content: end;
+    }
+
+    .sell-own-item .prices .prices-container,
+    .trades-item .prices .prices-container {
+        width: -webkit-fill-available;
+    }
+
+    .set-prices-container .sell-own-item {
+        flex-wrap: wrap;
+    }
+
+    .profile-content {
+        flex-direction: column !important;
+    }
+
+    .profile-content-left {
+        display: none;
+    }
+
+    .profile-content-left-mobile {
+        display: flex;
+    }
+
+    .ticket-chat-message-data {
+        max-width: 95%;
+    }
+
+    .payment-types {
+        font-size: 12px;
+        width: -webkit-fill-available;
+    }
+
+    .payment-header {
+        padding: 0;
+    }
+
+    .deposit-data,
+    .withdraw-data {
+        width: -webkit-fill-available;
+    }
+
+    .profile-info.active {
+        padding-top: 65px;
+        padding-bottom: 65px;
+    }
+}
+
+@media only screen and (width < 431px) {
+
+    .trades-item .prices {
+        flex-direction: column;
+    }
+
+    .sell-own-item .name .second,
+    .trades-item .name .second {
+        text-overflow: ellipsis;
+        overflow: hidden;
+        text-wrap: nowrap;
+        width: 130px;
+    }
+
+    .set-prices-content .sell-own-item .prices .prices-container .price-steam,
+    .set-prices-content .sell-own-item .prices .prices-container .price-market {
+        width: -webkit-fill-available;
+    }
+
+    .set-prices-content input {
+        width: -webkit-fill-available;
+    }
+
+    .set-prices-content .sell-own-item .prices .prices-container {
+        flex-direction: column;
+    }
+
+    .ticket-chat-back a {
+        flex-direction: column;
+    }
+
+    .payment-type {
+        min-width: auto;
+    }
+
+    .deposit-data,
+    .withdraw-data {
+        flex-direction: column;
+    }
+
+    .data-item {
+        width: -webkit-fill-available;
+    }
+
+    .data-item:hover {
+        opacity: 1;
+        width: -webkit-fill-available;
+    }
+
+    .ticket-chat-container {
+        padding-bottom: 65px;
+    }
+}
+
+@media only screen and (width < 391px) {
+
+    .sellownprice-container .sell-own-item .prices,
+    .trades-item .prices {
+        flex-direction: row;
+        gap: 0px;
+    }
+
+    .sell-own-item,
+    .trades-item {
+        flex-wrap: wrap;
+    }
+
+    .trades-item .prices .prices-container {
+        justify-content: start;
+    }
+
+    .trades-item .prices .prices-container .price-steam {
+        align-items: start;
+    }
+}
+
+@media only screen and (width < 361px) {}
