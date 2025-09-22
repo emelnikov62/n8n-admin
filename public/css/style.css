@@ -729,6 +729,10 @@ body {
     }
 }
 
+.padding-top-20 {
+    padding-top: 20px;
+}
+
 .content-inner {
     height: 100%;
     padding-top: 30px;

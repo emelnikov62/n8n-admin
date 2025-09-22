@@ -49,7 +49,7 @@ export default {
         },
         uploadLogo() {
             if (!this.image) {
-                this.$root.showAlert('error', 'Файл не выбран');
+                this.$root.showAlert('error', this.$t('profile.empty_file'));
                 return;
             }
 

@@ -49,7 +49,7 @@ export default {
         },
         uploadLogo() {
             if (!this.image) {
-                this.$root.showAlert('error', 'Файл не выбран');
+                this.$root.showAlert('error', this.$t('profile.empty_file'));
                 return;
             }
 
@@ -62,7 +62,7 @@ export default {
 
                     if (data.success) {
                         this.$root.emit('hideModal');
-                        this.$root.emit('updateDomains');
+                        this.$root.emit('updateDomain');
                         this.$root.showAlert('success', this.$t('profile.logo_change_success'));
                     } else {
                         this.$root.showAlert('error', this.$t(data.message));

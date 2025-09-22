@@ -5,17 +5,17 @@
             class="relative back-static back block full-height gap-0 padding-0 full-width flex flex-column align-items-start justify-center opacity-full">
             <div class="rows flex flex-row gap-10 justify-space-between align-items-start full-width padding-10">
                 <div class="flex flex-1 flex-column gap-2">
-                    <span class="title">Адресс домена</span>
+                    <span class="title">{{ $t('profile.domain_address') }}</span>
                     <input type="text" v-model="domain"
                         class="input flex-1 full-width back-static input-skin-price height-40 border-radius-10"
-                        placeholder="введите домен в формате http(https)://domain.com" />
+                        :placeholder="$t('profile.domain_address_placeholder')" />
                 </div>
             </div>
         </div>
         <button @click="createDomain" type="button" v-if="!loading"
             class="button gap-5 flex flex-row padding-10 back-static back block height-60 upper font-bold fs-10 border-[main-color] gradient-fresh-block full-width">
             <SvgComponent :svgKey="SVG.EDIT" />
-            Добавить
+            {{ $t('profile.add_domain') }}
         </button>
         <div class="loader-container full-width full-height flex-column align-items-center justify-center flex" v-else>
             <span class="loader"></span>
@@ -43,7 +43,7 @@ export default {
     methods: {
         createDomain() {
             if (!this.domain) {
-                this.$root.showAlert('error', 'Введите адрес домена');
+                this.$root.showAlert('error', this.$t('profile.empty_domain_address'));
                 return;
             }
 

@@ -10,7 +10,7 @@
               <SvgComponent :svgKey="SVG.USER" />
               {{ $t('profile.general') }}
             </router-link>
-            <router-link to="/admin/domains/active" :class="$route.path.includes('domains') ? 'active' : ''"
+            <router-link to="/admin/domains/active" :class="$route.path.includes('domains') || $route.path.includes('domain/') ? 'active' : ''"
               class="profile-inventory flex-1 fs-12 font-bold gap-10 back back-opacity-60 upper white full-height block flex flex-row align-items-center justify-center">
               <SvgComponent :svgKey="SVG.MARKET" />
               {{ $t('profile.domains') }}

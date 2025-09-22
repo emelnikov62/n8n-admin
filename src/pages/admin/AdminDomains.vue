@@ -8,13 +8,13 @@
             :class="$route.path.includes('active') ? 'active' : ''"
             class="profile-general gap-10 fs-12 svg-[20] font-bold back-opacity-60 back upper flex-1 white full-height block flex flex-row align-items-center justify-center">
             <SvgComponent :svgKey="SVG.ARROW_SUCCESS" />
-            Активные
+            {{ $t('profile.domains_active') }}
           </router-link>
           <router-link :to="{ name: 'admin-domains', params: { type: 'disable' } }"
             :class="$route.path.includes('disable') ? 'active' : ''"
             class="profile-inventory flex-1 fs-12 font-bold gap-10 back back-opacity-60 upper white full-height block flex flex-row align-items-center justify-center">
             <SvgComponent :svgKey="SVG.X" />
-            Не активные
+            {{ $t('profile.domains_not_active') }}
           </router-link>
         </div>
       </div>
@@ -24,13 +24,13 @@
         class="button button-set-bet gradient-main-block height-40 flex auto flex-row align-items-start">
         <div class="flex flex-row gap-5 align-items-center">
           <SvgComponent :svgKey="SVG.MARKET" />
-          <span class="upper fs-12">Добавить домен</span>
+          <span class="upper fs-12">{{ $t('profile.add_domain') }}</span>
         </div>
       </button>
       <div class="align-items-center justify-center relative flex flex-1 flex-row align-items-center justify-center">
         <input type="text"
           class="input flex-1 full-width back-static padding-left-40 padding-right-40 input-skin-price height-40 border-radius-10"
-          v-model="search" placeholder="Наименование" />
+          v-model="search" :placeholder="$t('profile.filter_placeholder')" />
         <div class="absolute left-10">
           <SvgComponent :svgKey="SVG.SEARCH" />
         </div>
@@ -48,21 +48,13 @@
       <div v-for="domain in domains" v-bind:key="domain"
         class="flex cursor flex-row full-width align-items-start justify-space-between back-static block bet history-bet opacity-full">
         <div
-          class="flex cursor flex-row full-width align-items-center overflow justify-space-between back-static block bet padding-10">
-          <div class="flex flex-row gap-5 align-items-center justify-center width-100">
-            <div @click="changeLogo(domain)"
-              class="button button-set-bet gradient-bs height-30 flex flex-row align-items-center justify-center">
-              <div class="flex flex-row gap-5 align-items-center full-width">
-                <SvgComponent :svgKey="SVG.EDIT" />
-              </div>
-            </div>
-          </div>
+          class="flex cursor flex-row gap-5 full-width align-items-center overflow justify-space-between back-static block bet padding-10">
           <div class="flex flex-row gap-10 align-items-center justify-start full-height full-width">
             <div class="loader-container full-height flex-column align-items-center justify-center flex"
               v-if="domain.load">
               <span class="loader"></span>
             </div>
-            <div v-else>
+            <div v-else class="flex flex-row align-items-center justify-center width-40">
               <img :src="'data:' + domain.logo.mimeType + ';base64, ' + domain.logo.data" v-if="domain.logo" />
               <img src="../../../public/images/logo-new.png" v-else />
             </div>
@@ -77,33 +69,37 @@
             <span class="main overflow-text">
               <CashCoin :cash="domain.used_tokens ? domain.used_tokens : 0" />
             </span>
-            <span class="title fs-12">использовано</span>
+            <span class="title fs-12">{{ $t('profile.used_tokens') }}</span>
           </div>
           <div class="flex flex-column gap-2 align-items-start justify-center full-height width-150">
             <span class="main overflow-text">
               <CashCoin :cash="domain.tokens - domain.used_tokens" />
             </span>
-            <span class="title fs-12">осталось</span>
+            <span class="title fs-12">{{ $t('profile.availible_tokens') }}</span>
           </div>
           <div @click="updateField('n8n_schema.clients', 'active', false, 'id', domain.id,)" v-if="domain.active == 1"
             class="button button-set-bet gradient-alert-error height-45 min-width-180 flex flex-row align-items-center justify-center">
-            <div class="flex flex-row gap-5 align-items-center full-width">
-              <SvgComponent :svgKey="SVG.X" />
-              <span class="upper fs-12 font-bold">Деактивировать</span>
+            <div class="flex flex-row gap-5 align-items-center justify-center full-width">
+              <span class="upper fs-12 font-bold">{{ $t('profile.not_active_domain_btn') }}</span>
             </div>
           </div>
           <div @click="updateField('n8n_schema.clients', 'active', true, 'id', domain.id,)" v-if="domain.active == 0"
             class="button button-set-bet gradient-alert-success height-45 min-width-180 flex flex-row align-items-center justify-center">
-            <div class="flex flex-row gap-5 align-items-center full-width">
-              <SvgComponent :svgKey="SVG.ARROW_SUCCESS" />
-              <span class="upper fs-12 font-bold">Активировать</span>
+            <div class="flex flex-row gap-5 align-items-center justify-center full-width">
+              <span class="upper fs-12 font-bold">{{ $t('profile.active_domain_btn') }}</span>
+            </div>
+          </div>
+          <div @click="editDomain(domain.id)"
+            class="button button-set-bet gradient-alert-success height-45 min-width-40 flex flex-row align-items-center justify-center">
+            <div class="flex flex-row gap-5 align-items-center justify-center full-width">
+              <SvgComponent :svgKey="SVG.EDIT" />
             </div>
           </div>
         </div>
       </div>
     </div>
     <div v-else class="flex flex-row align-items-center justify-center full-height">
-      <span class="main back back-static block padding-10">Домены не найдены</span>
+      <span class="main back back-static block padding-10">{{ $t('profile.domains_not_fond') }}</span>
     </div>
   </div>
 </template>
@@ -113,7 +109,7 @@ import CashCoin from '@/components/CashCoin.vue';
 import { SVG } from '../../components/svg/Enum';
 import SvgComponent from '../../components/svg/Svg.vue';
 export default {
-  name: 'AdminMain',
+  name: 'AdminDomains',
   components: {
     SvgComponent, CashCoin
   },
@@ -140,19 +136,9 @@ export default {
     clearFilter() {
       this.search = null;
     },
-    changeLogo(domain) {
-      this.$root.emit('showModal', {
-        header: this.$t('profile.logo_file'),
-        component: 'UploadDomainLogo',
-        back: true,
-        data: domain.id,
-        classWindow: 'create-promocode-window',
-        clear: true
-      });
-    },
     create() {
       this.$root.emit('showModal', {
-        header: 'Добавить домен',
+        header: this.$t('profile.add_domain'),
         component: 'AddDomain',
         back: true,
         classWindow: 'create-promocode-window',
@@ -212,6 +198,9 @@ export default {
         console.log(err);
         this.loading = false;
       });
+    },
+    editDomain(id) {
+      this.$router.push({ name: 'admin-domain-settings-main', params: { id: id } });
     }
   },
   mounted() {
