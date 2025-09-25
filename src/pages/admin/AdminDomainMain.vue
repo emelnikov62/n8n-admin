@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-column full-width gap-20 profile-general-container padding-top-20" v-if="!loading">
+  <div class="flex flex-column full-width gap-10 profile-general-container padding-top-0" v-if="!loading">
     <div class="rows flex flex-row gap-20 justify-space-between align-items-center full-width general-top">
       <div class="general-top-container-top flex flex-column full-width justify-space-between align-items-start gap-10">
         <div class="flex flex-row align-items-center gap-10">

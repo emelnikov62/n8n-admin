@@ -3065,3 +3065,7 @@ input[type="checkbox"]:checked::after {
 .black {
     color: black;
 }
+
+.max-height-800 {
+    max-height: 800px !important;
+}

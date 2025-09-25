@@ -36,7 +36,26 @@ export default {
             empty_domain_address: 'Input domain address',
             empty_file: 'Empty file',
             save: 'Save',
-            domain_actions: 'Actions'
+            domain_actions: 'Actions',
+            add_action: 'Add action',
+            action_name: 'Action name',
+            action_key: 'Action key',
+            action_valid_error: 'Fill all fields',
+            action_change_success: 'Saved',
+            action_fields: 'Action required fields from user',
+            add: 'Add',
+            action_field_name: 'Field name',
+            action_field_key: 'Field name key',
+            action_integration: 'Integration',
+            action_postgres_url: 'Url',
+            action_postgres_port: 'Port',
+            action_postgres_db: 'Database',
+            action_postgres_schema: 'Schema',
+            action_postgres_login: 'Login',
+            action_postgres_password: 'Password',
+            action_postgres_table: 'Table',
+            empty_integration_type: 'Select integration type',
+            edit_action: 'Edit action'
         }
     },
     RU: {
@@ -76,7 +95,26 @@ export default {
             empty_domain_address: 'Введите адрес домена',
             empty_file: 'Файл не выбран',
             save: 'Сохранить',
-            domain_actions: 'Действия'
+            domain_actions: 'Действия',
+            add_action: 'Добавить действие',
+            action_name: 'Наименование действие',
+            action_key: 'Наименование ключа',
+            action_valid_error: 'Заполните все поля',
+            action_change_success: 'Сохранено',
+            action_fields: 'Обязательные поля, которые должны быть предоставлены пользователем',
+            add: 'Добавить',
+            action_field_name: 'Наименование поля',
+            action_field_key: 'Наименования ключа поля',
+            action_integration: 'Тип интеграции',
+            action_postgres_url: 'Адрес',
+            action_postgres_port: 'Порт',
+            action_postgres_db: 'База данных',
+            action_postgres_schema: 'Схема',
+            action_postgres_login: 'Логин',
+            action_postgres_password: 'Пароль',
+            action_postgres_table: 'Таблица',
+            empty_integration_type: 'Выберите тип интеграции',
+            edit_action: 'Изменить действие'
         }
     }
 }

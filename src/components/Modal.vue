@@ -17,6 +17,7 @@
 
 <script>
 import AddDomain from './AddDomain.vue';
+import AddDomainAction from './AddDomainAction.vue';
 import { SVG } from './svg/Enum';
 import SvgComponent from './svg/Svg.vue';
 import UploadDomainLogo from './UploadDomainLogo.vue';
@@ -24,7 +25,7 @@ import UploadUserLogo from './UploadUserLogo.vue';
 
 export default {
     components: {
-        SvgComponent, AddDomain, UploadDomainLogo, UploadUserLogo
+        SvgComponent, AddDomain, UploadDomainLogo, UploadUserLogo, AddDomainAction
     },
     props: [],
     data() {

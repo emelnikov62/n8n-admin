@@ -1,9 +1,9 @@
 <template>
-  <div class="flex flex-column full-width gap-20 profile-general-container" v-if="!loading">
+  <div class="flex flex-column full-width gap-10 profile-general-container" v-if="!loading">
     <div class="rows flex flex-row gap-20 justify-space-between align-items-center full-width general-top">
       <div class="row width-70 height-160 flex flex-column align-items-center justify-center">
         <div
-          class="general-top-container padding-20 block back-static flex-column full-height full-width opacity-full block flex align-items-center justify-space-between">
+          class="general-top-container padding-10 block back-static flex-column full-height full-width opacity-full block flex align-items-center justify-space-between">
           <div class="general-top-container-top flex flex-row full-width justify-space-between align-items-start">
             <div class="flex flex-row align-items-center gap-20">
               <img v-if="domain && domain.logo" :src="'data:' + domain.logo.mimeType + ';base64, ' + domain.logo.data"
@@ -75,7 +75,7 @@
         </div>
       </div>
     </div>
-    <div class="rows flex flex-row gap-20 justify-space-between align-items-start full-width">
+    <div class="rows flex flex-row gap-10 justify-space-between align-items-start full-width">
       <div class="row full-width flex flex-column align-items-center justify-center gap-10">
         <div
           class="border-dashed profile-nav full-width height-60 gap-2 flex-row back-static block flex align-items-center justify-center opacity-full">
