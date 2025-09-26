@@ -87,5 +87,8 @@ export const SVG = {
     SO2: 'SO2',
     LOCK: 'LOCK',
     KEY: 'KEY',
-    FIGHT: 'FIGHT'
+    FIGHT: 'FIGHT',
+    POSTGRES: 'POSTGRES',
+    EXCEL: 'EXCEL',
+    HTTP: 'HTTP'
 }

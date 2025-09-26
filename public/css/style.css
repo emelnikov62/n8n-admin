@@ -3069,3 +3069,11 @@ input[type="checkbox"]:checked::after {
 .max-height-800 {
     max-height: 800px !important;
 }
+
+.actions-data {
+    max-height: 500px !important;
+}
+
+.red {
+    color: red;
+}

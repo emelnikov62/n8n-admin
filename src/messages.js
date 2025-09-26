@@ -25,7 +25,7 @@ export default {
             used_tokens: 'Useds',
             domains_active: 'Active',
             domains_not_active: 'Disable',
-            add_domain: 'Add domain',
+            add_domain: 'Add',
             filter_placeholder: 'Name',
             not_active_domain_btn: 'Disable',
             active_domain_btn: 'Active',
@@ -37,7 +37,7 @@ export default {
             empty_file: 'Empty file',
             save: 'Save',
             domain_actions: 'Actions',
-            add_action: 'Add action',
+            add_action: 'Add',
             action_name: 'Action name',
             action_key: 'Action key',
             action_valid_error: 'Fill all fields',
@@ -45,7 +45,7 @@ export default {
             action_fields: 'Action required fields from user',
             add: 'Add',
             action_field_name: 'Field name',
-            action_field_key: 'Field name key',
+            action_field_key: 'Field name key (excel - A2, postgres - column, rest - key)',
             action_integration: 'Integration',
             action_postgres_url: 'Url',
             action_postgres_port: 'Port',
@@ -55,7 +55,11 @@ export default {
             action_postgres_password: 'Password',
             action_postgres_table: 'Table',
             empty_integration_type: 'Select integration type',
-            edit_action: 'Edit action'
+            edit_action: 'Edit',
+            action_empty_fields: 'Fill action fields',
+            action_rest_body: 'Body request',
+            action_sheet_id: 'Sheet ID',
+            action_sheet_range: 'Sheet range (Data!A2:Z2)'
         }
     },
     RU: {
@@ -84,7 +88,7 @@ export default {
             used_tokens: 'Использовано',
             domains_active: 'Активные',
             domains_not_active: 'Не активные',
-            add_domain: 'Добавить домен',
+            add_domain: 'Добавить',
             filter_placeholder: 'Наименование',
             not_active_domain_btn: 'Деактивировать',
             active_domain_btn: 'Активировать',
@@ -96,7 +100,7 @@ export default {
             empty_file: 'Файл не выбран',
             save: 'Сохранить',
             domain_actions: 'Действия',
-            add_action: 'Добавить действие',
+            add_action: 'Добавить',
             action_name: 'Наименование действие',
             action_key: 'Наименование ключа',
             action_valid_error: 'Заполните все поля',
@@ -104,7 +108,7 @@ export default {
             action_fields: 'Обязательные поля, которые должны быть предоставлены пользователем',
             add: 'Добавить',
             action_field_name: 'Наименование поля',
-            action_field_key: 'Наименования ключа поля',
+            action_field_key: 'Наименования ключа поля (excel - A2, postgres - колонка, rest - ключ)',
             action_integration: 'Тип интеграции',
             action_postgres_url: 'Адрес',
             action_postgres_port: 'Порт',
@@ -114,7 +118,11 @@ export default {
             action_postgres_password: 'Пароль',
             action_postgres_table: 'Таблица',
             empty_integration_type: 'Выберите тип интеграции',
-            edit_action: 'Изменить действие'
+            edit_action: 'Редактировать',
+            action_empty_fields: 'Заполните поля, которые должны быть предоставлены пользователем',
+            action_rest_body: 'Тело запроса',
+            action_sheet_id: 'Идентификатор документа',
+            action_sheet_range: 'Диапозон стобцов (Data!A2:Z2)'
         }
     }
 }

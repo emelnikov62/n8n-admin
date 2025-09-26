@@ -1,7 +1,7 @@
 <template>
   <div class="flex flex-column full-width gap-20 profile-general-container padding-top-0">
     <div class="rows flex flex-row gap-20 justify-space-between align-items-center full-width general-top">
-      <div class="general-top-container-top flex flex-column full-width justify-space-between align-items-start gap-10">
+      <div class="flex flex-column full-width justify-space-between align-items-start gap-10">
         <div class="flex flex-row gap-10 full-width align-items-center justify-center">
           <div class="flex flex-column align-items-start justify-start">
             <button type="button" @click="addAction"
@@ -44,6 +44,24 @@
                   <span class="title fs-12">
                     {{ action.key }}
                   </span>
+                </div>
+              </div>
+              <div v-if="action.type_id == 2"
+                class="button button-set-bet gradient-empty height-45 width-60 flex flex-row align-items-center justify-center">
+                <div class="flex flex-row gap-5 align-items-center justify-center full-width">
+                  <SvgComponent :svgKey="SVG.POSTGRES" />
+                </div>
+              </div>
+              <div v-if="action.type_id == 1"
+                class="button button-set-bet gradient-empty height-45 width-60 flex flex-row align-items-center justify-center">
+                <div class="flex flex-row gap-5 align-items-center justify-center full-width">
+                  <SvgComponent :svgKey="SVG.EXCEL" />
+                </div>
+              </div>
+              <div v-if="action.type_id == 3"
+                class="button button-set-bet gradient-empty height-45 width-60 flex flex-row align-items-center justify-center">
+                <div class="flex flex-row gap-5 align-items-center justify-center full-width">
+                  <SvgComponent :svgKey="SVG.HTTP" />
                 </div>
               </div>
               <div @click="removeAction(action.id)"
@@ -93,13 +111,13 @@ export default {
         header: this.$t('profile.add_action'),
         component: 'AddDomainAction',
         back: true,
-        classWindow: 'create-promocode-window',
+        classWindow: 'create-promocode-window actions-window',
         clear: true
       });
     },
     getDomainActions() {
       this.loading = true;
-      this.$root.$http.post('/user/domains/actions', {
+      this.$root.$http.post('user/domains/actions', {
         id: this.$route.params.id,
         search: this.search
       }).then(res => {
@@ -122,13 +140,13 @@ export default {
         component: 'AddDomainAction',
         data: action,
         back: true,
-        classWindow: 'create-promocode-window',
+        classWindow: 'create-promocode-window actions-window',
         clear: true
       });
     },
     removeAction(id) {
       this.loading = true;
-      this.$root.$http.post('/user/domains/actions/remove', {
+      this.$root.$http.post('user/domains/actions/remove', {
         id: id
       }).then(res => {
         if (res.data.success) {

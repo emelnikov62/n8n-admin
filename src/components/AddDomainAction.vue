@@ -1,8 +1,8 @@
 <template>
     <div
-        class="overflow-y max-height-800 full-height padding-10 gap-10 full-width flex flex-column align-items-center justify-start back-static block border-radius-content opacity-full">
+        class="full-height padding-10 gap-10 full-width flex flex-column align-items-center justify-start back-static block border-radius-content opacity-full">
         <div
-            class="relative back-static back block full-height gap-0 padding-0 full-width flex flex-column align-items-start justify-center opacity-full">
+            class="overflow-y actions-data relative back-static back block full-height gap-0 padding-0 full-width flex flex-column align-items-start justify-start opacity-full">
             <div class="rows flex flex-row gap-10 justify-space-between align-items-start full-width padding-10">
                 <div class="flex flex-1 flex-column gap-2">
                     <span class="title">{{ $t('profile.action_name') }}</span>
@@ -62,6 +62,40 @@
                             {{ type.type }}
                         </option>
                     </select>
+                    <div v-if="integrationType == 1" class="padding-top-10 flex flex-column gap-10 full-width">
+                        <div class="flex flex-1 flex-column gap-2">
+                            <span class="title">{{ $t('profile.action_sheet_id') }}</span>
+                            <input type="text"
+                                class="input flex-1 full-width back-static padding-left-10 padding-right-10 input-skin-price height-40 border-radius-10"
+                                v-model="integrationTypeValue.sheet_id" :placeholder="$t('profile.action_sheet_id')" />
+                        </div>
+                        <div class="flex flex-1 flex-column gap-2">
+                            <span class="title">{{ $t('profile.action_sheet_range') }}</span>
+                            <input type="text"
+                                class="input flex-1 full-width back-static padding-left-10 padding-right-10 input-skin-price height-40 border-radius-10"
+                                v-model="integrationTypeValue.sheet_range"
+                                :placeholder="$t('profile.action_sheet_range')" />
+                        </div>
+                    </div>
+                    <div v-if="integrationType == 3" class="padding-top-10 flex flex-column gap-10 full-width">
+                        <div class="flex flex-1 flex-column gap-2">
+                            <span class="title">{{ $t('profile.action_postgres_url') }} - POST</span>
+                            <input type="text"
+                                class="input flex-1 full-width back-static padding-left-10 padding-right-10 input-skin-price height-40 border-radius-10"
+                                v-model="integrationTypeValue.url" :placeholder="$t('profile.action_postgres_url')" />
+                        </div>
+                        <div class="flex flex-1 flex-column gap-2" v-if="fields.length > 0">
+                            <span class="title">{{ $t('profile.action_rest_body') }}</span>
+                            <span class="main">
+                                {{'{"data": ' + JSON.stringify(JSON.parse('{' + fields.filter(f => f.key).map(f =>
+                                    `"${f.key}": "value"`).join(',')
+                                    + '}')) + '}'}}
+                            </span>
+                        </div>
+                        <div class="flex flex-1 flex-column gap-2" v-else>
+                            <span class="main red">{{ $t('profile.action_empty_fields') }}</span>
+                        </div>
+                    </div>
                     <div v-if="integrationType == 2" class="padding-top-10 flex flex-column gap-10 full-width">
                         <div class="flex flex-row gap-10 full-width align-items-center justify-center">
                             <div class="flex flex-1 flex-column gap-2">
@@ -165,6 +199,7 @@ export default {
 
             if (this.integrationType == 2) {
                 this.integrationTypeValue = {
+                    type_id: this.data.type_id,
                     id: this.data.integration_id,
                     url: this.data.host,
                     port: this.data.port,
@@ -175,11 +210,28 @@ export default {
                     table: this.data.table
                 };
             }
+
+            if (this.integrationType == 3) {
+                this.integrationTypeValue = {
+                    type_id: this.data.type_id,
+                    url: this.data.host,
+                    id: this.data.integration_id
+                };
+            }
+
+            if (this.integrationType == 1) {
+                this.integrationTypeValue = {
+                    type_id: this.data.type_id,
+                    sheet_id: this.data.sheet_id,
+                    sheet_range: this.data.range,
+                    id: this.data.integration_id
+                };
+            }
         }
     },
     methods: {
         changeIntegrationType(event) {
-            this.integrationTypeValue = { id: event.target.value };
+            this.integrationTypeValue = { type_id: event.target.value };
         },
         getIntegrationTypes() {
             this.$root.$http.get('user/domains/actions/types')
@@ -206,7 +258,7 @@ export default {
             this.fields.splice(field, 1);
         },
         processAction() {
-            if (!this.name || !this.key || this.fields.length == 0 || !this.validPostgreFields()) {
+            if (!this.name || !this.key || this.fields.length == 0 || !this.validPostgreFields() || !this.validRestFields() || !this.validExcelFields()) {
                 this.$root.showAlert('error', this.$t('profile.action_valid_error'));
                 return;
             }
@@ -254,6 +306,36 @@ export default {
                 || !this.integrationTypeValue.login
                 || !this.integrationTypeValue.password
                 || !this.integrationTypeValue.table) {
+                return false;
+            }
+
+            return true;
+        },
+        validRestFields() {
+            if (!this.integrationTypeValue) {
+                return false;
+            }
+
+            if (this.integrationType != 3) {
+                return true;
+            }
+
+            if (!this.integrationTypeValue.url) {
+                return false;
+            }
+
+            return true;
+        },
+        validExcelFields() {
+            if (!this.integrationTypeValue) {
+                return false;
+            }
+
+            if (this.integrationType != 1) {
+                return true;
+            }
+
+            if (!this.integrationTypeValue.sheet_id || !this.integrationTypeValue.sheet_range) {
                 return false;
             }
 

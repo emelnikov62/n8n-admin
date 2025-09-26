@@ -141,6 +141,7 @@
 .create-promocode-window {
     width: 40%;
     height: auto;
+    max-height: 80% !important;
 }
 
 .create-item-window {
@@ -151,4 +152,8 @@
 .battle-password-window {
     width: 40%;
     height: auto;
+}
+
+.actions-window {
+    width: 70% !important;
 }
