@@ -3,11 +3,11 @@
     <div class="rows flex flex-row gap-20 justify-space-between align-items-center full-width general-top">
       <div class="general-top-container-top flex flex-column full-width justify-space-between align-items-start gap-10">
         <div class="flex flex-row align-items-center gap-10">
-          <SvgComponent :svgKey="SVG.USER" />
+          <SvgComponent :svgKey="SVG.MARKET" />
           <span class="main fs-14 bold">Системный промпт агента</span>
         </div>
         <div class="flex flex-row align-items-center gap-10 full-width">
-          <textarea class="full-width input-promo main padding-10" v-model="domain.systemMessage" rows="20"></textarea>
+          <textarea class="full-width input-promo main padding-10" v-model="domain.systemMessage" rows="5"></textarea>
         </div>
         <div class="flex full-width flex-column align-items-end justify-end">
           <button type="button"
@@ -16,11 +16,19 @@
             <SvgComponent :svgKey="SVG.SAVE" />{{ $t('profile.save') }}
           </button>
         </div>
+        <div class="flex flex-row align-items-center gap-10">
+          <SvgComponent :svgKey="SVG.USER" />
+          <span class="main fs-14 bold">Клиентский промпт агента</span>
+        </div>
+        <div class="flex flex-row align-items-center gap-10 full-width">
+          <textarea class="full-width input-promo main padding-10" disabled v-model="domain.clientMessage"
+            rows="5"></textarea>
+        </div>
       </div>
     </div>
   </div>
   <div class="loader-container full-width full-height flex-column align-items-center justify-center flex padding-top-20"
-    v-if="loading">
+    v-else>
     <span class="loader"></span>
   </div>
 </template>
@@ -60,6 +68,7 @@ export default {
       }).then(res => {
         if (res.data.success) {
           this.domain = res.data.data;
+          this.domain.clientMessage = JSON.parse(this.domain.clientMessage);
         }
 
         this.loading = false;

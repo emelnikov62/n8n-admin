@@ -5,6 +5,20 @@
             class="overflow-y actions-data relative back-static back block full-height gap-0 padding-0 full-width flex flex-column align-items-start justify-start opacity-full">
             <div class="rows flex flex-row gap-10 justify-space-between align-items-start full-width padding-10">
                 <div class="flex flex-1 flex-column gap-2">
+                    <span class="title">{{ $t('profile.action_integration_type_row') }}</span>
+                    <select v-model="integrationTypeRow" @change="changeIntegrationTypeRow($event)"
+                        class="input back-static lex-1 full-width input-skin-price height-40 border-radius-10 padding-left-10 padding-right-10">
+                        <option disabled selected value="-1">
+                            {{ $t('profile.action_integration_type_row') }}
+                        </option>
+                        <option value="insert">{{ $t('profile.action_insert') }}</option>
+                        <option value="update">{{ $t('profile.action_update') }}</option>
+                        <option value="delete">{{ $t('profile.action_delete') }}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="rows flex flex-row gap-10 justify-space-between align-items-start full-width padding-10">
+                <div class="flex flex-1 flex-column gap-2">
                     <span class="title">{{ $t('profile.action_name') }}</span>
                     <input type="text"
                         class="input flex-1 full-width back-static padding-left-10 padding-right-10 input-skin-price height-40 border-radius-10"
@@ -184,8 +198,9 @@ export default {
             fields: [],
             load: false,
             integrationTypes: [],
-            integrationType: "-1",
-            integrationTypeValue: {}
+            integrationType: '-1',
+            integrationTypeValue: {},
+            integrationTypeRow: '-1'
         }
     },
     mounted() {
@@ -196,6 +211,7 @@ export default {
             this.name = this.data.name;
             this.key = this.data.key;
             this.integrationType = this.data.type_id;
+            this.integrationTypeRow = this.data.type_row;
 
             if (this.integrationType == 2) {
                 this.integrationTypeValue = {
@@ -233,6 +249,9 @@ export default {
         changeIntegrationType(event) {
             this.integrationTypeValue = { type_id: event.target.value };
         },
+        changeIntegrationTypeRow(event) {
+            this.integrationTypeValue.type_row = event.target.value;
+        },
         getIntegrationTypes() {
             this.$root.$http.get('user/domains/actions/types')
                 .then(res => {
@@ -258,7 +277,7 @@ export default {
             this.fields.splice(field, 1);
         },
         processAction() {
-            if (!this.name || !this.key || this.fields.length == 0 || !this.validPostgreFields() || !this.validRestFields() || !this.validExcelFields()) {
+            if (!this.name || !this.key || this.fields.length == 0 || !this.validPostgreFields() || !this.validRestFields() || !this.validExcelFields() || !this.integrationTypeRow) {
                 this.$root.showAlert('error', this.$t('profile.action_valid_error'));
                 return;
             }
@@ -272,8 +291,10 @@ export default {
                 name: this.name,
                 key: this.key,
                 fields: this.fields,
+                type_row: this.integrationTypeRow,
                 integration: this.integrationTypeValue,
-                id: this.data ? this.data.id : this.$route.params.id
+                id: this.data ? this.data.id : this.$route.params.id,
+                client_id: this.$route.params.id
             }).then(res => {
                 let data = res.data;
 

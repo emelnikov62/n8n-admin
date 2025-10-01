@@ -59,7 +59,11 @@ export default {
             action_empty_fields: 'Fill action fields',
             action_rest_body: 'Body request',
             action_sheet_id: 'Sheet ID',
-            action_sheet_range: 'Sheet range (Data!A2:Z2)'
+            action_sheet_range: 'Sheet range (Data!A2:Z2)',
+            action_integration_type_row: 'Select Insert/Update/Delete action type',
+            action_insert: 'Insert',
+            action_update: 'Update',
+            action_delete: 'Delete'
         }
     },
     RU: {
@@ -122,7 +126,11 @@ export default {
             action_empty_fields: 'Заполните поля, которые должны быть предоставлены пользователем',
             action_rest_body: 'Тело запроса',
             action_sheet_id: 'Идентификатор документа',
-            action_sheet_range: 'Диапозон стобцов (Data!A2:Z2)'
+            action_sheet_range: 'Диапозон стобцов (Data!A2:Z2)',
+            action_integration_type_row: 'Выберите Добавить/Обновить/Удалить тип действия',
+            action_insert: 'Добавить',
+            action_update: 'Обновить',
+            action_delete: 'Удалить'
         }
     }
 }

@@ -64,6 +64,20 @@
                   <SvgComponent :svgKey="SVG.HTTP" />
                 </div>
               </div>
+              <div @click="updateField('n8n_schema.actions', 'active', false, 'id', action.id,)"
+                v-if="action.active == 1"
+                class="button button-set-bet gradient-alert-error height-45 min-width-180 flex flex-row align-items-center justify-center">
+                <div class="flex flex-row gap-5 align-items-center justify-center full-width">
+                  <span class="upper fs-12 font-bold">{{ $t('profile.not_active_domain_btn') }}</span>
+                </div>
+              </div>
+              <div @click="updateField('n8n_schema.actions', 'active', true, 'id', action.id,)"
+                v-if="action.active == 0"
+                class="button button-set-bet gradient-alert-success height-45 min-width-180 flex flex-row align-items-center justify-center">
+                <div class="flex flex-row gap-5 align-items-center justify-center full-width">
+                  <span class="upper fs-12 font-bold">{{ $t('profile.active_domain_btn') }}</span>
+                </div>
+              </div>
               <div @click="removeAction(action.id)"
                 class="button button-set-bet gradient-cl height-45 width-60 flex flex-row align-items-center justify-center">
                 <div class="flex flex-row gap-5 align-items-center justify-center full-width">
@@ -126,6 +140,30 @@ export default {
           res.data.data.forEach(element => {
             this.actions.push(element.json);
           });
+
+          var message = '';
+          var actionsHeader = '';
+          var actionsStatus = '';
+          var fieldsList = '';
+          this.actions.filter(f => f.active).forEach(action => {
+            actionsHeader += `${action.name} - запрашивать: ` + action.fields.map(field => {
+              return `${field.name}`
+            }).join(',') + ', если не были предоставлены ранее.'
+            actionsStatus += `${action.key} - если все данные введены для ${action.name} и клиент их подтвердил`;
+            fieldsList += action.fields.map(field => {
+              return `\n"${field.key}": <${field.name}>`;
+            }).join(',');
+          });
+
+          message += actionsHeader;
+          message += '\nВсегда возвращай ответ от бота.\nВозвращай ответ всегда в JSON формате:';
+          message += '\n{';
+          message += '\n"output": <текст ответа бота>,';
+          message += `\n"action": <${actionsStatus}, иначе null>,`;
+          message += `\n"fields": {${fieldsList}\n}`;
+          message += '\n}';
+
+          console.log(message);
         }
 
         this.loading = false;
@@ -148,6 +186,25 @@ export default {
       this.loading = true;
       this.$root.$http.post('user/domains/actions/remove', {
         id: id
+      }).then(res => {
+        if (res.data.success) {
+          this.getDomainActions();
+        } else {
+          this.loading = false;
+          this.$root.showAlert('error', this.$t(res.data.message));
+        }
+      }).catch(err => {
+        console.log(err);
+        this.loading = false;
+      });
+    },
+    updateField(table, field, value, key, keyValue) {
+      this.$root.$http.post('/user/domains/update', {
+        table: table,
+        key: key,
+        key_value: keyValue,
+        field: field,
+        value: value
       }).then(res => {
         if (res.data.success) {
           this.getDomainActions();
