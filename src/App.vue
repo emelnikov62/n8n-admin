@@ -3,10 +3,10 @@
     <div class="content-inner flex flex-column gap-20">
       <div class="flex flex-column gap-10 align-items-center justify-center">
         <img alt="Vue logo" src="./assets/logo.png">
-        <div class="main fs-30">Welcome to Dialogica</div>
+        <div class="main fs-30">{{ $t('main.welcome') }}</div>
         <button @click="goTo"
           class="button-go-to back-static cursor padding-10 gradient-fresh-block flex full-width flex-row align-items-center justify-space-between gap-10 back block height-45 font-bold fs-14">
-          <span class="main fs-16">Get started</span>
+          <span class="main fs-16">{{ $t('main.started_btn') }}</span>
           <SvgComponent :svgKey="SVG.MENU_MOBILE"></SvgComponent>
         </button>
       </div>

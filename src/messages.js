@@ -1,7 +1,13 @@
 export default {
     ENG: {
         main: {
-            need_auth: 'You are not authorization'
+            need_auth: 'You are not authorization',
+            welcome: 'Welcome to Dialogica',
+            started_btn: 'Get started',
+            auth_title: 'Log In to Dialogica',
+            login: 'Login',
+            password: 'Password',
+            login_btn: 'Log In'
         },
         header: {
             deposit: 'Deposit'
@@ -74,7 +80,13 @@ export default {
     },
     RU: {
         main: {
-            need_auth: 'Требуется авторизация'
+            need_auth: 'Требуется авторизация',
+            welcome: 'Добро пожаловать в Dialogica',
+            started_btn: 'Приступить к работе',
+            auth_title: 'Авторизаваться в Dialogica',
+            login: 'Имя пользователя',
+            password: 'Пароль',
+            login_btn: 'Приступить к работе'
         },
         header: {
             deposit: 'Пополнить'

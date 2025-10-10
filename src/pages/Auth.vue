@@ -3,15 +3,15 @@
         <div class="content-inner flex flex-column gap-20">
             <div class="flex flex-column gap-10 align-items-center justify-center">
                 <img alt="Vue logo" src="../assets/logo.png">
-                <div class="main fs-30">Welcome to Dialogica</div>
+                <div class="main fs-30">{{ $t('main.auth_title') }}</div>
                 <div class="flex flex-column gap-2 full-width">
-                    <div class="main fs-14">Login</div>
+                    <div class="main fs-14">{{ $t('main.login') }}</div>
                     <div class="full-width">
                         <input v-model="login" class="input input-skin-price full-width" type="text">
                     </div>
                 </div>
                 <div class="flex flex-column gap-2 full-width">
-                    <div class="main fs-14">Password</div>
+                    <div class="main fs-14">{{ $t('main.password') }}</div>
                     <div class="full-width">
                         <input v-model="password" class="input input-skin-price full-width" type="password">
                     </div>
@@ -20,7 +20,7 @@
                     <button @click="checkAuth" v-if="!loading" type="button"
                         class="back-static cursor padding-10 gradient-fresh-block flex full-width flex-row align-items-center justify-space-between gap-10 back block height-45 font-bold fs-14">
                         <SvgComponent :svgKey="SVG.AUTH"></SvgComponent>
-                        <span class="main fs-14">Log In</span>
+                        <span class="main fs-14">{{ $t('main.login_btn') }}</span>
                     </button>
                     <div v-else class="flex flex-row align-items-center justify-center padding-20 z-10">
                         <div
