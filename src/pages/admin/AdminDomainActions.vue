@@ -1,7 +1,7 @@
 <template>
-  <div class="flex flex-column full-width gap-20 profile-general-container padding-top-0">
-    <div class="rows flex flex-row gap-20 justify-space-between align-items-center full-width general-top">
-      <div class="flex flex-column full-width justify-space-between align-items-start gap-10">
+  <div class="flex flex-column full-width gap-20 profile-general-container padding-top-0 full-height">
+    <div class="rows flex flex-row gap-20 justify-space-between align-items-start full-width general-top full-height">
+      <div class="flex flex-column full-width justify-space-between align-items-start gap-10 full-height">
         <div class="flex flex-row gap-10 full-width align-items-center justify-center">
           <div class="flex flex-column align-items-start justify-start">
             <button type="button" @click="addAction"
@@ -27,7 +27,7 @@
           <span class="loader"></span>
         </div>
         <div class="overflow overflow-y height-500 full-width gap-5 flex flex-column block items-scroll"
-          v-else-if="actions">
+          v-else-if="actions.length != 0">
           <div v-for="action in actions" v-bind:key="action"
             class="flex cursor flex-row full-width align-items-start justify-space-between back-static block bet history-bet opacity-full">
             <div
@@ -46,19 +46,19 @@
                   </span>
                 </div>
               </div>
-              <div v-if="action.type_id == 2"
+              <div v-if="action.integration_pg && action.integration_pg[0].type_id"
                 class="button button-set-bet gradient-empty height-45 width-60 flex flex-row align-items-center justify-center">
                 <div class="flex flex-row gap-5 align-items-center justify-center full-width">
                   <SvgComponent :svgKey="SVG.POSTGRES" />
                 </div>
               </div>
-              <div v-if="action.type_id == 1"
+              <div v-if="action.integration_excel && action.integration_excel[0].type_id"
                 class="button button-set-bet gradient-empty height-45 width-60 flex flex-row align-items-center justify-center">
                 <div class="flex flex-row gap-5 align-items-center justify-center full-width">
                   <SvgComponent :svgKey="SVG.EXCEL" />
                 </div>
               </div>
-              <div v-if="action.type_id == 3"
+              <div v-if="action.integration_rest && action.integration_rest[0].type_id"
                 class="button button-set-bet gradient-empty height-45 width-60 flex flex-row align-items-center justify-center">
                 <div class="flex flex-row gap-5 align-items-center justify-center full-width">
                   <SvgComponent :svgKey="SVG.HTTP" />
@@ -87,8 +87,8 @@
             </div>
           </div>
         </div>
-        <div v-else class="flex flex-row align-items-center justify-center full-height">
-          <span class="main back back-static block padding-10">{{ $t('profile.domains_not_fond') }}</span>
+        <div v-else class="flex flex-row align-items-center justify-center full-height full-width">
+          <span class="main back back-static block padding-10">{{ $t('profile.actions_not_found') }}</span>
         </div>
       </div>
     </div>
@@ -141,29 +141,29 @@ export default {
             this.actions.push(element.json);
           });
 
-          var message = '';
-          var actionsHeader = '';
-          var actionsStatus = '';
-          var fieldsList = '';
-          this.actions.filter(f => f.active).forEach(action => {
-            actionsHeader += `${action.name} - запрашивать: ` + action.fields.map(field => {
-              return `${field.name}`
-            }).join(',') + ', если не были предоставлены ранее.'
-            actionsStatus += `${action.key} - если все данные введены для ${action.name} и клиент их подтвердил`;
-            fieldsList += action.fields.map(field => {
-              return `\n"${field.key}": <${field.name}>`;
-            }).join(',');
-          });
+          // var message = '';
+          // var actionsHeader = '';
+          // var actionsStatus = '';
+          // var fieldsList = '';
+          // this.actions.filter(f => f.active).forEach(action => {
+          //   actionsHeader += `${action.name} - запрашивать: ` + action.fields.map(field => {
+          //     return `${field.name}`
+          //   }).join(',') + ', если не были предоставлены ранее.'
+          //   actionsStatus += `${action.key} - если все данные введены для ${action.name} и клиент их подтвердил`;
+          //   fieldsList += action.fields.map(field => {
+          //     return `\n"${field.key}": <${field.name}>`;
+          //   }).join(',');
+          // });
 
-          message += actionsHeader;
-          message += '\nВсегда возвращай ответ от бота.\nВозвращай ответ всегда в JSON формате:';
-          message += '\n{';
-          message += '\n"output": <текст ответа бота>,';
-          message += `\n"action": <${actionsStatus}, иначе null>,`;
-          message += `\n"fields": {${fieldsList}\n}`;
-          message += '\n}';
+          // message += actionsHeader;
+          // message += '\nВсегда возвращай ответ от бота.\nВозвращай ответ всегда в JSON формате:';
+          // message += '\n{';
+          // message += '\n"output": <текст ответа бота>,';
+          // message += `\n"action": <${actionsStatus}, иначе null>,`;
+          // message += `\n"fields": {${fieldsList}\n}`;
+          // message += '\n}';
 
-          console.log(message);
+          // console.log(message);
         }
 
         this.loading = false;

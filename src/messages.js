@@ -63,7 +63,11 @@ export default {
             action_integration_type_row: 'Select Insert/Update/Delete action type',
             action_insert: 'Insert',
             action_update: 'Update',
-            action_delete: 'Delete'
+            action_delete: 'Delete',
+            domain_action_pg: 'Postgres',
+            domain_action_excel: 'Google Excel',
+            domain_action_http: 'Http Rest',
+            actions_not_found: 'Domain actions not found'
         }
     },
     RU: {
@@ -130,7 +134,11 @@ export default {
             action_integration_type_row: 'Выберите Добавить/Обновить/Удалить тип действия',
             action_insert: 'Добавить',
             action_update: 'Обновить',
-            action_delete: 'Удалить'
+            action_delete: 'Удалить',
+            domain_action_pg: 'Postgres',
+            domain_action_excel: 'Google Excel',
+            domain_action_http: 'Http Rest',
+            actions_not_found: 'Действия не найдены'
         }
     }
 }

@@ -16,8 +16,17 @@ setTimeout(() => {
                 return false;
             }
         });
+        $('.add_record_btn').click(() => {
+            $('.chat-input-text').val($('.add_record_btn').text());
+            $('.chat-input-send-button').click();
+        });
+
+        $('.cancel_record_btn').click(() => {
+            $('.chat-input-text').val($('.cancel_record_btn').text());
+            $('.chat-input-send-button').click();
+        });
     });
-}, 100);
+}, 500);
 
 function showChat() {
     if ($('.chat-window').is(':hidden')) {
