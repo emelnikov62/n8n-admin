@@ -1,7 +1,7 @@
 <template>
   <div class="flex flex-column full-width gap-20 profile-general-container padding-top-0 full-height">
     <div class="rows flex flex-row gap-20 justify-space-between align-items-start full-width general-top full-height">
-      <div class="flex flex-column full-width justify-space-between align-items-start gap-10 full-height">
+      <div class="flex flex-column full-width justify-space-between align-items-start gap-5 full-height">
         <div class="flex flex-row gap-10 full-width align-items-center justify-center">
           <div class="flex flex-column align-items-start justify-start">
             <button type="button" @click="addAction"

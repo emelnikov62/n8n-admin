@@ -76,7 +76,7 @@
       </div>
     </div>
     <div class="rows flex flex-row gap-10 justify-space-between align-items-start full-width full-height">
-      <div class="row full-width flex flex-column align-items-center justify-center gap-10 full-height">
+      <div class="row full-width flex flex-column align-items-start justify-start gap-10 full-height">
         <div
           class="border-dashed profile-nav full-width height-60 gap-2 flex-row back-static block flex align-items-center justify-center opacity-full">
           <router-link :to="{ name: 'admin-domain-settings-main' }"

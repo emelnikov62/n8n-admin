@@ -67,7 +67,9 @@ export default {
             domain_action_pg: 'Postgres',
             domain_action_excel: 'Google Excel',
             domain_action_http: 'Http Rest',
-            actions_not_found: 'Domain actions not found'
+            actions_not_found: 'Domain actions not found',
+            client_prompt: 'Client prompt',
+            system_prompt: 'System prompt'
         }
     },
     RU: {
@@ -138,7 +140,9 @@ export default {
             domain_action_pg: 'Postgres',
             domain_action_excel: 'Google Excel',
             domain_action_http: 'Http Rest',
-            actions_not_found: 'Действия не найдены'
+            actions_not_found: 'Действия не найдены',
+            client_prompt: 'Клиентский промпт агента',
+            system_prompt: 'Системный промпт агента'
         }
     }
 }

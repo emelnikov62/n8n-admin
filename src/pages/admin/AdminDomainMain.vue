@@ -4,7 +4,7 @@
       <div class="general-top-container-top flex flex-column full-width justify-space-between align-items-start gap-10">
         <div class="flex flex-row align-items-center gap-10">
           <SvgComponent :svgKey="SVG.MARKET" />
-          <span class="main fs-14 bold">Системный промпт агента</span>
+          <span class="main fs-14 bold">{{ $t('profile.system_prompt') }}</span>
         </div>
         <div class="flex flex-row align-items-center gap-10 full-width">
           <textarea class="full-width input-promo main padding-10" v-model="domain.systemMessage" rows="5"></textarea>
@@ -18,7 +18,7 @@
         </div>
         <div class="flex flex-row align-items-center gap-10">
           <SvgComponent :svgKey="SVG.USER" />
-          <span class="main fs-14 bold">Клиентский промпт агента</span>
+          <span class="main fs-14 bold">{{ $t('profile.client_prompt') }}</span>
         </div>
         <div class="flex flex-row align-items-center gap-10 full-width">
           <textarea class="full-width input-promo main padding-10" disabled v-model="domain.clientMessage"
