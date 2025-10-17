@@ -14,7 +14,7 @@
                 </a>
             </div>
             <div class="header-container-center flex flex-row justify-center align-items-center">
-                <a href="/" class="logo">
+                <a href="/" class="logo flex flex-row align-items-center justify-center">
                     <img src="../../public/images/logo-new.png">
                 </a>
             </div>
