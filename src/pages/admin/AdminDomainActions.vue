@@ -46,19 +46,21 @@
                   </span>
                 </div>
               </div>
-              <div v-if="action.integration_pg && action.integration_pg[0].type_id"
+              <div v-if="action.integration_pg && action.integration_pg[0].type_id && action.integration_pg[0].host"
                 class="button button-set-bet gradient-empty height-45 width-60 flex flex-row align-items-center justify-center">
                 <div class="flex flex-row gap-5 align-items-center justify-center full-width">
                   <SvgComponent :svgKey="SVG.POSTGRES" />
                 </div>
               </div>
-              <div v-if="action.integration_excel && action.integration_excel[0].type_id"
+              <div
+                v-if="action.integration_excel && action.integration_excel[0].type_id && action.integration_excel[0].sheet_id"
                 class="button button-set-bet gradient-empty height-45 width-60 flex flex-row align-items-center justify-center">
                 <div class="flex flex-row gap-5 align-items-center justify-center full-width">
                   <SvgComponent :svgKey="SVG.EXCEL" />
                 </div>
               </div>
-              <div v-if="action.integration_rest && action.integration_rest[0].type_id"
+              <div
+                v-if="action.integration_rest && action.integration_rest[0].type_id && action.integration_rest[0].host"
                 class="button button-set-bet gradient-empty height-45 width-60 flex flex-row align-items-center justify-center">
                 <div class="flex flex-row gap-5 align-items-center justify-center full-width">
                   <SvgComponent :svgKey="SVG.HTTP" />
@@ -185,7 +187,7 @@ export default {
     removeAction(id) {
       this.loading = true;
       this.$root.$http.post('user/domains/actions/remove', {
-        id: id
+        id: id, client_id: this.$route.params.id
       }).then(res => {
         if (res.data.success) {
           this.getDomainActions();

@@ -249,30 +249,36 @@ export default {
             this.key = this.data.key;
             this.integrationTypeRow = this.data.type_row;
 
-            this.integrationTypes.pg = {
-                type_id: this.data.integration_pg[0].type_id,
-                id: this.data.integration_pg[0].integration_id,
-                url: this.data.integration_pg[0].host,
-                port: this.data.integration_pg[0].port,
-                db: this.data.integration_pg[0].database,
-                schema: this.data.integration_pg[0].schema,
-                login: this.data.integration_pg[0].login,
-                password: this.data.integration_pg[0].password,
-                table: this.data.integration_pg[0].table
-            };
+            if (this.data.integration_pg) {
+                this.integrationTypes.pg = {
+                    type_id: this.data.integration_pg[0].type_id,
+                    id: this.data.integration_pg[0].integration_id,
+                    url: this.data.integration_pg[0].host,
+                    port: this.data.integration_pg[0].port,
+                    db: this.data.integration_pg[0].database,
+                    schema: this.data.integration_pg[0].schema,
+                    login: this.data.integration_pg[0].login,
+                    password: this.data.integration_pg[0].password,
+                    table: this.data.integration_pg[0].table
+                };
+            }
 
-            this.integrationTypes.rest = {
-                type_id: this.data.integration_rest[0].type_id,
-                url: this.data.integration_rest[0].host,
-                id: this.data.integration_rest[0].integration_id
-            };
+            if (this.data.integration_rest) {
+                this.integrationTypes.rest = {
+                    type_id: this.data.integration_rest[0].type_id,
+                    url: this.data.integration_rest[0].host,
+                    id: this.data.integration_rest[0].integration_id
+                };
+            }
 
-            this.integrationTypes.excel = {
-                type_id: this.data.integration_excel[0].type_id,
-                sheet_id: this.data.integration_excel[0].sheet_id,
-                sheet_range: this.data.integration_excel[0].range,
-                id: this.data.integration_excel[0].integration_id
-            };
+            if (this.data.integration_excel) {
+                this.integrationTypes.excel = {
+                    type_id: this.data.integration_excel[0].type_id,
+                    sheet_id: this.data.integration_excel[0].sheet_id,
+                    sheet_range: this.data.integration_excel[0].range,
+                    id: this.data.integration_excel[0].integration_id
+                };
+            }
         }
     },
     methods: {
@@ -289,6 +295,18 @@ export default {
             if (!this.name || !this.key || this.fields.length == 0 || !this.validateIntegration() || this.integrationTypeRow == -1) {
                 this.$root.showAlert('error', this.$t('profile.action_valid_error'));
                 return;
+            }
+
+            if (this.integrationTypes.rest && !this.integrationTypes.rest.url) {
+                this.integrationTypes.rest = null;
+            }
+
+            if (this.integrationTypes.pg && !this.integrationTypes.pg.url) {
+                this.integrationTypes.pg = null;
+            }
+
+            if (this.integrationTypes.excel && !this.integrationTypes.excel.sheet_id) {
+                this.integrationTypes.excel = null;
             }
 
             this.saveAction();
@@ -336,28 +354,37 @@ export default {
             }
 
             var checkExcel = true;
-            var checkRest = true;
             var checkPg = true;
 
-            if (!this.integrationTypes.excel.sheet_id || !this.integrationTypes.excel.sheet_range) {
-                checkExcel = false;
-            }
-
-            if (!this.integrationTypes.rest.url) {
-                checkRest = false;
+            if (!this.integrationTypes.excel.sheet_id && !this.integrationTypes.excel.sheet_range) {
+                checkExcel = true;
+            } else {
+                if (!this.integrationTypes.excel.sheet_id || !this.integrationTypes.excel.sheet_range) {
+                    checkExcel = false;
+                }
             }
 
             if (!this.integrationTypes.pg.url
-                || !this.integrationTypes.pg.port
-                || !this.integrationTypes.pg.db
-                || !this.integrationTypes.pg.schema
-                || !this.integrationTypes.pg.login
-                || !this.integrationTypes.pg.password
-                || !this.integrationTypes.pg.table) {
-                checkPg = false;
+                && !this.integrationTypes.pg.port
+                && !this.integrationTypes.pg.db
+                && !this.integrationTypes.pg.schema
+                && !this.integrationTypes.pg.login
+                && !this.integrationTypes.pg.password
+                && !this.integrationTypes.pg.table) {
+                checkPg = true;
+            } else {
+                if (!this.integrationTypes.pg.url
+                    || !this.integrationTypes.pg.port
+                    || !this.integrationTypes.pg.db
+                    || !this.integrationTypes.pg.schema
+                    || !this.integrationTypes.pg.login
+                    || !this.integrationTypes.pg.password
+                    || !this.integrationTypes.pg.table) {
+                    checkPg = false;
+                }
             }
 
-            return checkPg || checkExcel || checkRest;
+            return checkPg && checkExcel;
         }
     }
 }
