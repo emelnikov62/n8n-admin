@@ -2323,3 +2323,11 @@ ul.user-stack-list li:hover {
 .chat-messages-list {
     overflow-y: auto;
 }
+
+.speech-root {
+    position: absolute;
+    right: 0;
+    background: transparent;
+    cursor: pointer;
+    bottom: 1px;
+}

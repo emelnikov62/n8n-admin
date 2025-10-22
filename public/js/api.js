@@ -63,8 +63,12 @@ function sendMessage() {
 }
 
 function addBotMessage(text) {
-    var message = $(`<div class="chat-message chat-message-from-bot"><div class="chat-message-markdown"><p>${text}</p></div></div>`)
+    var id = Math.floor(Math.random(10000000000) * 10000000000);
+    var message = $(`<div class="chat-message chat-message-from-bot"><div class="chat-message-markdown"><p>${text}</p></div><span class="speech-root" id="speech-${id}"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g clip-path="url(#clip0_15_144)"> <rect width="24" height="24" fill="none"></rect> <rect x="9.5" y="3.5" width="5" height="12" rx="2.5" stroke="#000000" stroke-linejoin="round"></rect> <path d="M17 12V13C17 15.7614 14.7614 18 12 18V18C9.23858 18 7 15.7614 7 13V12" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></path> <path d="M12 18V21M12 21H9M12 21H15" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></path> </g> <defs> <clipPath id="clip0_15_144"> <rect width="24" height="24" fill="white"></rect> </clipPath> </defs> </g></svg></span></div>`)
     $('.chat-messages-list').append(message);
+    $(`#speech-${id}`).on('click', function () {
+        syntezSpeech(text);
+    });
 }
 
 function addUserMessage(text) {
@@ -91,4 +95,18 @@ function changeButtonStatus(status) {
 
 function scrollMessageList() {
     $('.chat-messages-list').animate({ scrollTop: $('.chat-messages-list')[0].scrollHeight }, 1000);
+}
+
+function syntezSpeech(text) {
+    $.post({ url: 'https://n8n-agent-emelnikov62.amvera.io/webhook/syntez-speech', crossDomain: true, timeout: 30000, data: { text: text } })
+        .done(function (data) {
+            if (data.status.toLocaleLowerCase() == 'SUCCESS'.toLocaleLowerCase()) {
+                var snd = new Audio("data:audio/wav;base64," + data.audio_data);
+                snd.play();
+            }
+        })
+        .fail(function (jqXHR, textStatus, errorThrown) {
+            console.log(jqXHR);
+            console.error(errorThrown);
+        });
 }
